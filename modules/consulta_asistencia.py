@@ -1,6 +1,11 @@
 import csv
+import os
 from typing import List
 from datetime import datetime
+
+def get_data_path(filename: str) -> str:
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_dir, 'data', filename)
 
 def ordenar_por_fecha(registros: List[List[str]]) -> List[List[str]]:
     """Ordena los registros por la fecha laboral, presente o ausente."""
