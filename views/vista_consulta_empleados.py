@@ -1,10 +1,9 @@
-
-import csv
-import os
-
+from modules.consulta_empleados import obtener_lista_empleados
 
 def modulo_consulta_empleados():
-    print("Modulo de consulta de empleados")
+    print("Modulo de consulta de empleados registrados")
+    
+    empleados = obtener_lista_empleados()
 
     archivo_csv = "data/Empleados.csv"
 
