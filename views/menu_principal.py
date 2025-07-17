@@ -3,7 +3,7 @@ from tkinter import *
 from views.vista_registro import mostrar_formulario_registro
 from views.vista_consulta import mostrar_consulta
 from views.vista_registro_empleados import modulo_registro_empleados
-from modules.consulta_empleados import modulo_consulta_empleados
+from views.vista_consulta_empleados import modulo_consulta_empleados
 from pathlib import Path
 
 def mostrar_menu():
