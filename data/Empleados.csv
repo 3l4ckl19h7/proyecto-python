@@ -1,6 +1,9 @@
 código,apellido,nombre,usuario,clave,activo
-u202516457,Macedo Chavarria,Jairo Carlos,JC,123456,A
+20251645,Macedo,Jairo,JC,123456,A
 75210347,García,Carlos,GC,1234,
 79810022,Lozano,María,ML,2345,
 70012345,Cruz,Diana,DC,3456,
 80121322,Pérez,Ana,PA,4567,
+75210347,García,Carlos,GC,1234,A
+70012345,Cruz,Diana,DC,3456,A
+74549877,Martínez,Juan,JMA,5678,A

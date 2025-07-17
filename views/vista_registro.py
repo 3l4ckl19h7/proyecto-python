@@ -17,7 +17,7 @@
 #     registrar_asistencia(dni, clave)
 #     print("\n(La validación de la clave y el registro se realiza en el módulo correspondiente.)")
 #     print("--- Fin del Registro ---\n")
-    
+
 from tkinter import *
 from tkinter import messagebox
 from utils.validaciones import validar_dni
