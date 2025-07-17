@@ -21,7 +21,7 @@
 from tkinter import *
 from tkinter import messagebox
 from utils.validaciones import validar_dni
-from modules.registra_asistencia import registrar_asistencia
+from modules.registra_asistencia import registrar_asistencia, validar_datos_empleados
 
 def mostrar_formulario_registro():
     ventana = Toplevel()
@@ -57,6 +57,9 @@ def mostrar_formulario_registro():
             messagebox.showerror("Error", "❌ DNI inválido. Debe tener 8 dígitos numéricos.")
             return
 
+        if not validar_datos_empleados(dni, clave):
+            messagebox.showerror("Error", "❌ DNI o clave incorrectos, o usuario inactivo.")
+            return
         registrar_asistencia(dni, clave)
         messagebox.showinfo("Registro Exitoso", "✅ Asistencia registrada correctamente.")
         ventana.destroy()

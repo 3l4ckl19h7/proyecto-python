@@ -7,6 +7,15 @@ def get_data_path(filename: str) -> str:
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_dir, 'data', filename)
 
+def validar_datos_empleados(DNI, clave):
+    empleados_path = get_data_path('Empleados.csv')
+    with open(empleados_path, newline='', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row['código'] == DNI and row['clave'] == clave:
+                return True
+    return False
+
 def registrar_asistencia(DNI, clave):
     # Validar DNI
     if not validar_dni(DNI):
