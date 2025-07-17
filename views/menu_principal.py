@@ -25,28 +25,15 @@
 #             print("❌ Opción inválida.")
 
 from tkinter import *
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from views.vista_registro import mostrar_formulario_registro
 from views.vista_consulta import mostrar_consulta
 from views.vista_registro_empleados import modulo_registro_empleados
-<<<<<<< HEAD
-from views.vista_consulta_empleados import modulo_consulta_empleados
-
-def mostrar_menu():
-    while True:
-        print("\n=== Menú Principal ===")
-        print("1. Registrar asistencia")
-        print("2. Consultar asistencia")
-        print("3. Registrar empleados")
-        print("4. Consultar empleados")
-        print("5. Salir")
-=======
 from pathlib import Path
 
 def mostrar_menu():
     ventana = Tk()
     ventana.title("Menú Principal")
->>>>>>> d018291610b7dc552c34123aba4b585da6a42549
 
     # Tamaño ventana
     ancho = 1000
@@ -75,14 +62,14 @@ def mostrar_menu():
     ruta_fondo = base_dir / "assets" / "fondo2.png"
 
     fondo_imgtk = None
-    if ruta_fondo.exists():
-        try:
-            from PIL import Image
-            img = Image.open(ruta_fondo)
-            img = img.resize((ancho // 2, alto - 80), Image.LANCZOS)
-            fondo_imgtk = ImageTk.PhotoImage(img, master=ventana)
-        except Exception as e:
-            print("Error cargando imagen:", e)
+    # if ruta_fondo.exists():
+    #     try:
+    #         #from PIL import Image
+    #         img = Image.open(ruta_fondo)
+    #         img = img.resize((ancho // 2, alto - 80), Image.LANCZOS)
+    #         fondo_imgtk = ImageTk.PhotoImage(img, master=ventana)
+    #     except Exception as e:
+    #         print("Error cargando imagen:", e)
 
     if fondo_imgtk:
         Label(frame_izq, image=fondo_imgtk).pack(fill=BOTH, expand=True)
@@ -109,26 +96,9 @@ def mostrar_menu():
            bg="#2980B9", command=mostrar_consulta, **style_btn).pack(pady=15)
     Button(frame_der, text="Registrar empleados",
            bg="#8E44AD", command=modulo_registro_empleados, **style_btn).pack(pady=15)
+    Button(frame_der, text="Consultar empleados",
+           bg="#8E44AD", command=modulo_consulta_empleados, **style_btn).pack(pady=15)
     Button(frame_der, text="Salir",
            bg="#C0392B", command=ventana.destroy, **style_btn).pack(pady=30)
 
     ventana.mainloop()
-
-<<<<<<< HEAD
-        if opcion == "1":
-            mostrar_formulario_registro()
-        elif opcion == "2":
-            mostrar_consulta()
-        elif opcion == "3":
-            modulo_registro_empleados()
-        elif opcion == "4":
-            modulo_consulta_empleados()
-            print("Estos son nuestros empleados, gracias. 🖐️")
-            break
-        elif opcion == "5":
-            print("Gracias por usar el sistema. 🖐️")
-            break
-        else:
-            print("❌ Opción inválida.")
-=======
->>>>>>> d018291610b7dc552c34123aba4b585da6a42549
