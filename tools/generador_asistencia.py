@@ -8,7 +8,9 @@ empleados = [
     {"dni": "80121322", "nombres": "Ana", "apellidos": "Pérez"},
     {"dni": "74549877", "nombres": "Luis", "apellidos": "Ramírez"},
     {"dni": "79810022", "nombres": "María", "apellidos": "Lozano"},
-    {"dni": "70012345", "nombres": "Diana", "apellidos": "Cruz"}
+    {"dni": "70012345", "nombres": "Diana", "apellidos": "Cruz"},
+    {"dni": "20251645", "nombres": "Jairo", "apellidos": "Macedo"},
+    {"dni": "74549877", "nombres": "Juan", "apellidos": "Martínez"}
 ]
 
 # Traducción de días al español con mayúscula y tilde

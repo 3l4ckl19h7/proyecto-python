@@ -25,7 +25,7 @@
 #             print("❌ Opción inválida.")
 
 from tkinter import *
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from views.vista_registro import mostrar_formulario_registro
 from views.vista_consulta import mostrar_consulta
 from views.vista_registro_empleados import modulo_registro_empleados
@@ -62,14 +62,14 @@ def mostrar_menu():
     ruta_fondo = base_dir / "assets" / "fondo2.png"
 
     fondo_imgtk = None
-    if ruta_fondo.exists():
-        try:
-            from PIL import Image
-            img = Image.open(ruta_fondo)
-            img = img.resize((ancho // 2, alto - 80), Image.LANCZOS)
-            fondo_imgtk = ImageTk.PhotoImage(img, master=ventana)
-        except Exception as e:
-            print("Error cargando imagen:", e)
+    # if ruta_fondo.exists():
+    #     try:
+    #         #from PIL import Image
+    #         img = Image.open(ruta_fondo)
+    #         img = img.resize((ancho // 2, alto - 80), Image.LANCZOS)
+    #         fondo_imgtk = ImageTk.PhotoImage(img, master=ventana)
+    #     except Exception as e:
+    #         print("Error cargando imagen:", e)
 
     if fondo_imgtk:
         Label(frame_izq, image=fondo_imgtk).pack(fill=BOTH, expand=True)
