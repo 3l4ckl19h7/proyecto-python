@@ -88,3 +88,7 @@ def validar_hora_entrada(hora_entrada):
     except ValueError:
         return False
 
+def validar_datos_empleados(dni, clave):
+    # Lógica para validar el empleado y la clave
+    pass
+
