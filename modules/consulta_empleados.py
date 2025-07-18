@@ -12,6 +12,16 @@ def obtener_lista_empleados():
         empleados = list(lector)
 
         return empleados if empleados else []
+
+
+def buscar_empleado_por_codigo(codigo):
+    empleados = obtener_lista_empleados()
+    if empleados is None:
+        return None
     
     
-    #Este es un comentario
+    for emp in empleados:
+        if emp.get("código") == codigo:
+             return emp
+    
+    return {}
