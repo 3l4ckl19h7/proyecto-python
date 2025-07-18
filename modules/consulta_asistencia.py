@@ -21,7 +21,7 @@ def ordenar_por_fecha(registros: List[List[str]]) -> List[List[str]]:
 def obtener_asistencia_por_usuario(dni: str):
     asistencias = []
     try:
-        with open("data/historico_asistencias.csv", mode="r", encoding="utf-8") as archivo:
+        with open(get_data_path("historico_asistencias.csv"), mode="r", encoding="utf-8") as archivo:
             reader = csv.reader(archivo)
             next(reader)
             for fila in reader:
@@ -34,7 +34,7 @@ def obtener_asistencia_por_usuario(dni: str):
 def obtener_asistencia_por_fecha(fecha: str) -> List[List[str]]:
     asistencias = []
     try:
-        with open("data/historico_asistencias.csv", mode="r", encoding="utf-8") as archivo:
+        with open(get_data_path("historico_asistencias.csv"), mode="r", encoding="utf-8") as archivo:
             reader = csv.reader(archivo)
             next(reader)
             for fila in reader:
@@ -47,7 +47,7 @@ def obtener_asistencia_por_fecha(fecha: str) -> List[List[str]]:
 def obtener_asistencia_por_dni_y_fecha(dni: str, fecha: str) -> List[List[str]]:
     asistencias = []
     try:
-        with open("data/historico_asistencias.csv", mode="r", encoding="utf-8") as archivo:
+        with open(get_data_path("historico_asistencias.csv"), mode="r", encoding="utf-8") as archivo:
             reader = csv.reader(archivo)
             next(reader)
             for fila in reader:

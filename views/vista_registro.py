@@ -1,23 +1,3 @@
-# from utils.validaciones import validar_dni
-# from modules.registra_asistencia import registrar_asistencia
-
-# def mostrar_formulario_registro():
-#     print("\n--- Registro de Asistencia ---")
-#     while True:
-#         dni = input("DNI: ")
-#         if not validar_dni(dni):
-#             print("❌ DNI inválido. Debe tener 8 dígitos numéricos.")
-#         else:
-#             print("✅ DNI válido.")
-#             break
-
-#     clave = input("Colocar clave: ")
-
-#     # Aquí solo se envía el DNI y la clave para su validación en registra_asistencia.py
-#     registrar_asistencia(dni, clave)
-#     print("\n(La validación de la clave y el registro se realiza en el módulo correspondiente.)")
-#     print("--- Fin del Registro ---\n")
-
 from tkinter import *
 from tkinter import ttk, messagebox
 from utils.validaciones import validar_dni
@@ -85,5 +65,3 @@ def mostrar_formulario_registro():
                command=registrar).pack(side=LEFT, padx=5)
     ttk.Button(frame_btns, text="Cancelar", style="Cancel.TButton",
                command=ventana.destroy).pack(side=LEFT, padx=5)
-
-

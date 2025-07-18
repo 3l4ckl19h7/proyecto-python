@@ -7,37 +7,46 @@ def get_data_path(filename: str) -> str:
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base_dir, 'data', filename)
 
-def validar_datos_empleados(DNI, clave):
+def validar_dni_empleado(DNI):
+    if not validar_dni(DNI):
+        print("❌ DNI inválido. Debe tener 8 dígitos.")
+        return False
     empleados_path = get_data_path('Empleados.csv')
     with open(empleados_path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row['código'] == DNI and row['clave'] == clave:
+            if row['código'] == DNI and (row.get('activo', 'A') == 'A' or row.get('activo', '') == ''):
+                return row
+    print("❌ DNI incorrecto o usuario inactivo.")
+    return False
+
+def validar_clave_empleado(empleado, clave):
+    if empleado and empleado['clave'] == clave:
+        return True
+    print("❌ Clave incorrecta.")
+    return False
+
+def asistencia_ya_registrada(DNI, fecha):
+    historico_path = get_data_path('historico_asistencias.csv')
+    if not os.path.exists(historico_path):
+        return False
+    with open(historico_path, newline='', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if len(row) > 0 and row[0] == DNI and row[4][:10] == fecha:
                 return True
     return False
 
 def registrar_asistencia(DNI, clave):
-    # Validar DNI
-    if not validar_dni(DNI):
-        print("❌ DNI inválido. Debe tener 8 dígitos.")
+    empleado = validar_dni_empleado(DNI)
+    if not empleado:
         return
 
-    empleados_path = get_data_path('Empleados.csv')
+    if not validar_clave_empleado(empleado, clave):
+        return
+
     historico_path = get_data_path('historico_asistencias.csv')
 
-    empleado = None
-    with open(empleados_path, newline='', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            if row['código'] == DNI and row['clave'] == clave and (row.get('activo', 'A') == 'A' or row.get('activo', '') == ''):
-                empleado = row
-                break
-
-    if not empleado:
-        print("❌ DNI o clave incorrectos, o usuario inactivo.")
-        return
-
-    # Datos para el registro
     ahora = datetime.now()
     dia_semana = ahora.strftime("%A")
     dias_es = {
@@ -46,12 +55,16 @@ def registrar_asistencia(DNI, clave):
     }
     dia_semana = dias_es.get(dia_semana, dia_semana)
     fecha_hora = ahora.strftime("%d-%m-%Y %H:%M:%S")
+    fecha_actual = ahora.strftime("%d-%m-%Y")
 
-    # Determinar tardanza (ejemplo: después de las 08:00:00 es tardanza)
+    # Validar si ya registró asistencia hoy
+    if asistencia_ya_registrada(DNI, fecha_actual):
+        print("⚠️ Ya has registrado tu asistencia hoy.")
+        return
+
     hora_limite = ahora.replace(hour=8, minute=0, second=0, microsecond=0)
     tardanza = "Sí" if ahora > hora_limite else "No"
 
-    # Guardar registro en historico_asistencias.csv
     with open(historico_path, 'a', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -74,7 +87,4 @@ def validar_hora_entrada(hora_entrada):
         return True
     except ValueError:
         return False
-
-def validar_registro_asistencia(dni, hora_entrada):
-    pass
 
