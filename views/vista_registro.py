@@ -19,7 +19,7 @@
 #     print("--- Fin del Registro ---\n")
 
 from tkinter import *
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 from utils.validaciones import validar_dni
 from modules.registra_asistencia import registrar_asistencia, validar_datos_empleados
 
@@ -48,6 +48,18 @@ def mostrar_formulario_registro():
     entry_clave = Entry(ventana, font=("Helvetica", 12), show="*")
     entry_clave.pack(pady=5)
 
+    # Estilos para colores (usar tema clam en macOS)
+    style = ttk.Style()
+    style.theme_use("clam")
+
+    style.configure("Success.TButton", font=("Helvetica", 12, "bold"),
+                    foreground="white", background="#4CAF50", padding=5)
+    style.map("Success.TButton", background=[("active", "#66BB6A")])
+
+    style.configure("Cancel.TButton", font=("Helvetica", 12, "bold"),
+                    foreground="white", background="#C62828", padding=5)
+    style.map("Cancel.TButton", background=[("active", "#E57373")])
+
     # Función interna para validar y registrar
     def registrar():
         dni = entry_dni.get().strip()
@@ -60,12 +72,18 @@ def mostrar_formulario_registro():
         if not validar_datos_empleados(dni, clave):
             messagebox.showerror("Error", "❌ DNI o clave incorrectos, o usuario inactivo.")
             return
+
         registrar_asistencia(dni, clave)
         messagebox.showinfo("Registro Exitoso", "✅ Asistencia registrada correctamente.")
         ventana.destroy()
 
-    Button(ventana, text="Registrar", bg="#4CAF50", fg="black", font=("Helvetica", 12, "bold"),
-           width=15, command=registrar).pack(pady=15)
+    # Botones con colores
+    frame_btns = Frame(ventana)
+    frame_btns.pack(pady=15)
 
-    Button(ventana, text="Cancelar", command=ventana.destroy).pack()
+    ttk.Button(frame_btns, text="Registrar", style="Success.TButton",
+               command=registrar).pack(side=LEFT, padx=5)
+    ttk.Button(frame_btns, text="Cancelar", style="Cancel.TButton",
+               command=ventana.destroy).pack(side=LEFT, padx=5)
+
 
