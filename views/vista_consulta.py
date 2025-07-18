@@ -92,7 +92,7 @@ def mostrar_consulta():
     ventana.resizable(False, False)
 
     # Centrar ventana
-    ancho, alto = 1000, 600
+    ancho, alto = 1000, 700
     x = (ventana.winfo_screenwidth() // 2) - (ancho // 2)
     y = (ventana.winfo_screenheight() // 2) - (alto // 2)
     ventana.geometry(f"{ancho}x{alto}+{x}+{y}")
@@ -150,10 +150,6 @@ def mostrar_consulta():
         for item in tabla.get_children():
             tabla.delete(item)
 
-    def limpiar_campos():
-        """Opcional: limpia las entradas de DNI y Fecha."""
-        entry_dni.delete(0, END)
-        entry_fecha.delete(0, END)
 
     def cambio_tipo_busqueda(*_):
         """Se ejecuta cuando cambias de DNI / Fecha / Ambos (por trace)."""
@@ -304,7 +300,7 @@ def mostrar_consulta():
 
     ttk.Button(
         frame_botones_final,
-        text="Generar PDF",
+        text="Generar Reporte",
         style="Blue.TButton",
         command=generar_pdf,
         width=18,
@@ -318,5 +314,4 @@ def mostrar_consulta():
         width=18,
     ).grid(row=0, column=2, padx=10)
 
-    # Opcional: seleccionar "dni" al abrir para mostrar campos por defecto
-    mostrar_campos("dni")
+    
