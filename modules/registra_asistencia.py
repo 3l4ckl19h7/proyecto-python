@@ -40,13 +40,11 @@ def asistencia_ya_registrada(DNI, fecha):
 def registrar_asistencia(DNI, clave):
     empleado = validar_dni_empleado(DNI)
     if not empleado:
-        return
-
+        return "error"
     if not validar_clave_empleado(empleado, clave):
-        return
+        return "error"
 
     historico_path = get_data_path('historico_asistencias.csv')
-
     ahora = datetime.now()
     dia_semana = ahora.strftime("%A")
     dias_es = {
@@ -59,8 +57,7 @@ def registrar_asistencia(DNI, clave):
 
     # Validar si ya registró asistencia hoy
     if asistencia_ya_registrada(DNI, fecha_actual):
-        print("⚠️ Ya has registrado tu asistencia hoy.")
-        return
+        return "duplicado"
 
     hora_limite = ahora.replace(hour=8, minute=0, second=0, microsecond=0)
     tardanza = "Sí" if ahora > hora_limite else "No"
@@ -76,7 +73,7 @@ def registrar_asistencia(DNI, clave):
             tardanza,
             "Presente"
         ])
-    print(f"✅ Asistencia registrada correctamente. ¡Bienvenido/a {empleado['nombre']} {empleado['apellido']}!")
+    return "exito"
 
 
 def validar_hora_entrada(hora_entrada):

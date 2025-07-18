@@ -53,9 +53,14 @@ def mostrar_formulario_registro():
             messagebox.showerror("Error", "❌ DNI o clave incorrectos, o usuario inactivo.")
             return
 
-        registrar_asistencia(dni, clave)
-        messagebox.showinfo("Registro Exitoso", "✅ Asistencia registrada correctamente.")
-        ventana.destroy()
+        resultado = registrar_asistencia(dni, clave)
+        if resultado == "duplicado":
+            messagebox.showwarning("Duplicado", "⚠️ Ya has registrado tu asistencia hoy.")
+        elif resultado == "exito":
+            messagebox.showinfo("Registro Exitoso", "✅ Asistencia registrada correctamente.")
+            ventana.destroy()
+        else:
+            messagebox.showerror("Error", "❌ No se pudo registrar la asistencia.")
 
     # Botones con colores
     frame_btns = Frame(ventana)
