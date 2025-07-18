@@ -89,6 +89,10 @@ def validar_hora_entrada(hora_entrada):
         return False
 
 def validar_datos_empleados(dni, clave):
-    # Lógica para validar el empleado y la clave
-    pass
+    empleado = validar_dni_empleado(dni)
+    if not empleado:
+        return False
+    if not validar_clave_empleado(empleado, clave):
+        return False
+    return True
 
