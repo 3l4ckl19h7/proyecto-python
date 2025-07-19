@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk, messagebox, filedialog
 from modules.consulta_asistencia import (
-    obtener_asistencia_por_usuario,
+    obtener_asistencia_por_dni,
     obtener_asistencia_por_fecha,
     obtener_asistencia_por_dni_y_fecha
 )
@@ -234,7 +234,7 @@ def mostrar_consulta():
             if not validar_dni(dni):
                 messagebox.showerror("Error", "❌ DNI inválido.")
                 return
-            registros = obtener_asistencia_por_usuario(dni)
+            registros = obtener_asistencia_por_dni(dni)
 
         elif tipo == "fecha":
             if not validar_fecha(fecha):
@@ -314,4 +314,3 @@ def mostrar_consulta():
         width=18,
     ).grid(row=0, column=2, padx=10)
 
-    

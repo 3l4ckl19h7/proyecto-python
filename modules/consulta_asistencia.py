@@ -18,7 +18,7 @@ def ordenar_por_fecha(registros: List[List[str]]) -> List[List[str]]:
     except (IndexError, ValueError):
         return registros
 
-def obtener_asistencia_por_usuario(dni: str):
+def obtener_asistencia_por_dni(dni: str):
     asistencias = []
     try:
         with open(get_data_path("historico_asistencias.csv"), mode="r", encoding="utf-8") as archivo:
